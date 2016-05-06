@@ -19,8 +19,8 @@ npm install can4linux
 var Can = require('can4linux');
 
 var can = new Can({
-  device: '/dev/can0', //CAN device to use
-  self: false, // turn to true to see message send by this device (with false only incomming messages are shown)
+  device: '/dev/can0', //CAN device to use, can be omitted
+  self: false, // turn to true to see message send by this device (with false only incomming messages are shown), can be omitted
 });
 
 can.on('data', function(data){
