@@ -16,7 +16,7 @@ npm install can4linux
 ## Usage
 
 ```
-var Can = require('can4linux);
+var Can = require('can4linux');
 
 var can = new Can({
   device: '/dev/can0', //CAN device to use
@@ -34,6 +34,7 @@ can.on('data', function(data){
 
 can.on('error', function(err){
   console.log("Error received", err);
+  can.close();
 });
 
 can.send({
