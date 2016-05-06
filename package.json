@@ -1,0 +1,11 @@
+{
+  "name": "can4linux",
+  "version": "0.1.0",
+  "description": "can4linux wrapper",
+  "main": "can.js",
+  "private": true,
+  "gypfile": true,
+  "dependencies": {
+    "nan": "*"
+  }
+}
