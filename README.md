@@ -14,3 +14,31 @@ npm install can4linux
 ```
 
 ## Usage
+
+```
+var Can = require('can4linux);
+
+var can = new Can({
+  device: '/dev/can0', //CAN device to use
+  self: false, // turn to true to see message send by this device (with false only incomming messages are shown)
+});
+
+can.on('data', function(data){
+  console.log(data.id);   // CAN id
+  console.log(data.ext);  // Is this extended id?
+  console.log(data.rtr);  // Is this RTR message
+  console.log(data.data); // Array with CAN data
+  console.log(data.self); // Is this message send by this device?
+  console.log(data.timestamp.sec + "s " + data.timestamp.usec + "us") // Timestamp
+});
+
+can.on('error', function(err){
+  console.log("Error received", err);
+});
+
+can.send({
+  id: 5,          // CAN id
+  ext: false,     // Is this extended id?
+  rtr: false,     // Is this RTR message
+  data: [1,2,3]   // Max 8 bytes unless you have CAN FD enabled, can be omitted
+});
