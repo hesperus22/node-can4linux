@@ -24,16 +24,20 @@ function Can(options){
         throw new Error("Error opening " + device);
     
     var read = function(){
-        if(open) return;
+        if(!can.open) return;
         can4linux.read(can.fd, 1000, function(err, data){
-            if(err)
-                can.emit('error', err);
+            if(err){
+		if(err.message!="rv0")
+                	can.emit('error', err);
+	    }
             else
                 can.emit('data', data);
             
             read();
         });
     };
+
+    read();
 };
 
 util.inherits(Can, EventEmitter);

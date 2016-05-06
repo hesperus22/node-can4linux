@@ -1,7 +1,12 @@
 #include <nan.h>
 #include <sstream>
+#include <cerrno>
 #include <sys/types.h>
+#include <unistd.h>
 #include <sys/stat.h>
+#include <sys/time.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <fcntl.h>
 #include "can4linux.h"      // NOLINT(build/include)
 
@@ -74,8 +79,10 @@ public:
 			return;
 		}
 
-		if (rv == 0 || !FD_ISSET(fd, &rfds))
+		if (rv == 0 || !FD_ISSET(fd, &rfds)){
+			SetErrorMessage("rv0");
 			return;
+		}
 
 		rv = read(fd, &rx, FRAME_SIZE);
 		rv = 1;
@@ -124,6 +131,8 @@ public:
 	void HandleOKCallback(){
 		HandleScope scope;
 
+		printf("OKCallback");
+
 		v8::Local<v8::Object> obj = New<v8::Object>();
 		Set(obj, key("id"), New(rx.id));
 		Set(obj, key("rtr"), flag(rx.flags, MSG_RTR));
@@ -131,8 +140,10 @@ public:
 		Set(obj, key("ext"), flag(rx.flags, MSG_EXT));
 
 		v8::Local<v8::Object> timestamp = New<v8::Object>();
-		Set(timestamp, key("sec"), New(rx.timestamp.tv_sec));
-		Set(timestamp, key("usec"), New(rx.timestamp.tv_usec));
+		int s = rx.timestamp.tv_sec;
+		Set(timestamp, key("sec"), New(s));
+		s = rx.timestamp.tv_usec;
+		Set(timestamp, key("usec"), New(s));
 		Set(obj, key("timestamp"), timestamp);
 
 		v8::Local<v8::Array> arr = New<v8::Array>(rx.length);
