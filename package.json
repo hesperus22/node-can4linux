@@ -2,8 +2,11 @@
   "name": "can4linux",
   "version": "0.1.0",
   "description": "can4linux wrapper",
+  "licence": "MIT",
+  "repository": "hesperus22/node-can4linux",
+  "bugs": "https://github.com/hesperus22/node-can4linux/issues",
+  "author": "Przemko Robakowski <przemko@przemko-robakowski.pl>",
   "main": "can.js",
-  "private": true,
   "gypfile": true,
   "dependencies": {
     "nan": "*"
