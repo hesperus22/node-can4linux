@@ -131,8 +131,6 @@ public:
 	void HandleOKCallback(){
 		HandleScope scope;
 
-		printf("OKCallback");
-
 		v8::Local<v8::Object> obj = New<v8::Object>();
 		Set(obj, key("id"), New(rx.id));
 		Set(obj, key("rtr"), flag(rx.flags, MSG_RTR));
@@ -164,8 +162,7 @@ private:
 
 NAN_METHOD(canOpen) {
     Utf8String *s = new Utf8String(info[0]);
-	int fd = open(s->operator*(), O_RDWR | O_NONBLOCK);
-    printf("File path: %s", s->operator*());
+    int fd = open(s->operator*(), O_RDWR | O_NONBLOCK);
     info.GetReturnValue().Set(fd);
 }
 

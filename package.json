@@ -1,6 +1,6 @@
 {
   "name": "can4linux",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "can4linux wrapper",
   "license": "MIT",
   "repository": "hesperus22/node-can4linux",
