@@ -2,7 +2,7 @@
 [![Dependency Status](https://david-dm.org/voodootikigod/node-serialport.svg)](https://david-dm.org/voodootikigod/node-serialport)
 
 ***
-This is simple wrapper for [can4linux library](https://sourceforge.net/projects/can4linux/). It provides methods only for reading and sending CAN messages. There is no option for setting baud rate etc. For support you can open a [github issue](https://github.com/hesperus22/node-can4linux/issues/new)
+This is simple wrapper for [can4linux library](https://sourceforge.net/projects/can4linux/). It provides methods only for reading and sending CAN messages. There is no option for setting baud rate etc. For support you can open a [github issue](https://github.com/hesperus22/node-can4linux/issues/new).
 
 ## Installation Instructions
 
@@ -43,3 +43,7 @@ can.send({
   rtr: false,     // Is this RTR message
   data: [1,2,3]   // Max 8 bytes unless you have CAN FD enabled, can be omitted
 });
+
+```
+
+Tested on BananaPi M1
