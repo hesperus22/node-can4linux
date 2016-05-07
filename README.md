@@ -1,4 +1,4 @@
-# can4linux
+# can4linux for Node.js
 [![Dependency Status](https://david-dm.org/voodootikigod/node-serialport.svg)](https://david-dm.org/voodootikigod/node-serialport)
 
 ***
